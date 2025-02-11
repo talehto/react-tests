@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import { PieChart, PieChartProps } from '@mui/x-charts/PieChart';
 import Button from '@mui/material/Button';
 
-export default function SyncHighlight() {
+export default function PulsePieChart() {
 
   const [animateArc, setAnimateArc] = React.useState(false);
 

@@ -14,6 +14,20 @@ export default function PulsePieChart() {
     ]);
 
     const highlightedId = 1;
+    const stripedId = 0;
+
+    const chartRef = React.useRef<SVGSVGElement | null>(null);
+
+    React.useEffect(() => {
+      if (chartRef.current) {
+        console.log("Here we go...")
+        const paths = chartRef.current.querySelectorAll("path");
+        if (paths[stripedId]) {
+          //paths[stripedId].style.fill = "url(#stripes-pattern)";
+          //paths[stripedId].style.fill = "black";
+        }
+      }
+    }, []);
 
     const handleClick = () => {
       setAnimateArc(!animateArc)
@@ -35,21 +49,6 @@ export default function PulsePieChart() {
         legend: {
           hidden: true,
         },
-        // svg: {
-        //   children: (
-        //     <defs>
-        //       <pattern
-        //         id="stripes-pattern"
-        //         width="10"
-        //         height="10"
-        //         patternUnits="userSpaceOnUse"
-        //         patternTransform="rotate(45)"
-        //       >
-        //         <rect width="5" height="10" fill="black" />
-        //       </pattern>
-        //     </defs>
-        //   ),
-        // },
       }
     };
 
@@ -60,16 +59,35 @@ export default function PulsePieChart() {
       spacing={1}
       sx={{ width: '100%' }}>
       <PieChart
+        ref={chartRef}
         className="my-pie-chart"
         {...pieChartProps}
         sx={{
           [animateArc && `path:nth-of-type(${highlightedId + 1})`]: {
             animation: "piechart-arc-pulse 10s infinite ease-out",
-            fill: "yellow",
+            //fill: "yellow",
             stroke: "#ffc733",
             strokeWidth: 3,
           },
-        }} />
+        }}
+        slotProps={{
+          svg: {
+            children: (
+              <defs>
+                <pattern
+                  id="stripes-pattern"
+                  width="100"
+                  height="100"
+                  patternUnits="userSpaceOnUse"
+                  patternTransform="rotate(45)"
+                >
+                  <rect width="50" height="100" fill="black" />
+                </pattern>
+              </defs>
+            ),
+          },
+        }}
+        />
     </Stack>
     <div>
         <Button id="button1" variant="contained" className="button1-animated"

@@ -11,7 +11,7 @@
   animation: piechart-arc-pulse 10s infinite ease-out;
 } */
 
-@keyframes move-stripes {
+/* @keyframes move-stripes {
   0% {
     background-position: 0 0;
   }
@@ -20,25 +20,27 @@
   }
 }
 
-/* .my-pie-chart path:nth-of-type(2) {
+.my-pie-chart path:nth-of-type(1) {
   fill: url(#stripes-pattern);
 } */
 
 @keyframes piechart-arc-pulse {
   0% {
-    transform: scale(1); /* scaling to 0 */
+    transform: scale(1); 
   }
   25% {
-    transform: scale(0.9); /* increasing the size */
+    transform: scale(0.9); 
+    background-color: #f56a3f;
   }
   50% {
-    transform: scale(1.0); /* increasing the size */
+    transform: scale(1.0); 
+    background-color: #2f0375;
   }
   75% {
-    transform: scale(0.9); /* decreasing the size */
+    transform: scale(0.9); 
+    background-color: #32994c;
   }
   100% {
-    transform: scale(1); /* seeting back to initial size */
+    transform: scale(1); 
   }
 }
-

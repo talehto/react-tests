@@ -4,6 +4,7 @@ import './index.css'
 //import App from './App.tsx'
 import { StyledEngineProvider } from '@mui/material/styles';
 import PulsePieChart from './mui/PulsePieChart'
+//import AnimatedStripes from './mui/AnimatedStripes'
 
 // createRoot(document.getElementById('root')!).render(
 //   <StrictMode>
@@ -21,6 +22,7 @@ createRoot(document.querySelector("#root")!).render(
   <StrictMode>
     <StyledEngineProvider injectFirst>
     <PulsePieChart />
+    {/* <AnimatedStripes /> */}
     </StyledEngineProvider>
   </StrictMode>
 );

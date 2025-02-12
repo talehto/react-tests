@@ -14,20 +14,19 @@ export default function PulsePieChart() {
     ]);
 
     const highlightedId = 1;
-    const stripedId = 0;
-
+    // const stripedId = 0;
     const chartRef = React.useRef<SVGSVGElement | null>(null);
 
-    React.useEffect(() => {
-      if (chartRef.current) {
-        console.log("Here we go...")
-        const paths = chartRef.current.querySelectorAll("path");
-        if (paths[stripedId]) {
-          //paths[stripedId].style.fill = "url(#stripes-pattern)";
-          //paths[stripedId].style.fill = "black";
-        }
-      }
-    }, []);
+    // React.useEffect(() => {
+    //   if (chartRef.current) {
+    //     console.log("Here we go...")
+    //     const paths = chartRef.current.querySelectorAll("path");
+    //     if (paths[stripedId]) {
+    //       //paths[stripedId].style.fill = "url(#stripes-pattern)";
+    //       //paths[stripedId].style.fill = "black";
+    //     }
+    //   }
+    // }, []);
 
     const handleClick = () => {
       setAnimateArc(!animateArc)
@@ -64,27 +63,10 @@ export default function PulsePieChart() {
         {...pieChartProps}
         sx={{
           [animateArc && `path:nth-of-type(${highlightedId + 1})`]: {
-            animation: "piechart-arc-pulse 10s infinite ease-out",
-            //fill: "yellow",
+            animation: "piechart-arc-pulse 10s infinite ease-out;",
             stroke: "#ffc733",
             strokeWidth: 3,
-          },
-        }}
-        slotProps={{
-          svg: {
-            children: (
-              <defs>
-                <pattern
-                  id="stripes-pattern"
-                  width="100"
-                  height="100"
-                  patternUnits="userSpaceOnUse"
-                  patternTransform="rotate(45)"
-                >
-                  <rect width="50" height="100" fill="black" />
-                </pattern>
-              </defs>
-            ),
+            fill: "yellow",
           },
         }}
         />
@@ -99,4 +81,3 @@ export default function PulsePieChart() {
     </>
   );
 }
-

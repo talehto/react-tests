@@ -5,6 +5,10 @@ npm install
 npm install @mui/material @emotion/react @emotion/styled @mui/x-charts
 npm run dev
 
+# Links
+- SVG manipulation: https://blog.logrocket.com/how-to-animate-svg-css-tutorial-examples/
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

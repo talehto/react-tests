@@ -13,7 +13,7 @@ export default function PulsePieChart() {
       { id: 2, value: 30, label: 'C', color: 'green' },
     ]);
 
-    const highlightedId = 1;
+    const highlightedId = 2;
     // const stripedId = 0;
     const chartRef = React.useRef<SVGSVGElement | null>(null);
 
@@ -53,31 +53,33 @@ export default function PulsePieChart() {
 
   return (
     <>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
     <Stack
       direction={{ xs: 'column', xl: 'row' }}
       spacing={1}
-      sx={{ width: '100%' }}>
+      sx={{ width: '30%', justifyContent: 'center' }}>
       <PieChart
         ref={chartRef}
         className="my-pie-chart"
         {...pieChartProps}
         sx={{
-          [animateArc && `path:nth-of-type(${highlightedId + 1})`]: {
+          [animateArc && `path:nth-of-type(${highlightedId})`]: {
             animation: "piechart-arc-pulse 10s infinite ease-out;",
-            stroke: "#ffc733",
-            strokeWidth: 3,
+            //stroke: "#ffc733",
+            //strokeWidth: 3,
             fill: "yellow",
           },
         }}
         />
     </Stack>
-    <div>
+    </div>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button id="button1" variant="contained" className="button1-animated"
           sx={{ width: '25%' }}
           onClick={handleClick}>
           {animateArc ? "Stop animation" : "Start animation"}
         </Button>
       </div>
-    </>
+      </>
   );
 }

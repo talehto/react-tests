@@ -1,66 +1,63 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 import { useEffect, useRef } from "react";
 
-// THIS EXAMPLE DOES NOT WORK!
-
-export default function StripedPieChart() {
+export default function AnimatedStripedPieChart() {
   const chartRef = useRef<SVGSVGElement | null>(null);
-  const stripedId = 1; // 🎯 Tämä lohko saa animoidut raidat
+  const stripedId = 1; // Striped arc
 
   useEffect(() => {
     if (chartRef.current) {
       const paths = chartRef.current.querySelectorAll("path");
       if (paths[stripedId]) {
-        paths[stripedId].style.fill = "url(#stripes-pattern)"; // Lisää raidat vain valittuun lohkoon
+        paths[stripedId].setAttribute("fill", "url(#moving-stripes)");
       }
     }
   }, []);
 
   return (
-    <PieChart
-      ref={chartRef}
-      width={300}
-      height={200}
-      series={[
-        {
-          data: [
-            { id: 0, value: 40, label: "A" },
-            { id: 1, value: 30, label: "B" }, // 🎯 Tämä lohko saa animoidut raidat
-            { id: 2, value: 20, label: "C" },
-            { id: 3, value: 10, label: "D" },
-          ],
-          innerRadius: 50,
-          outerRadius: 100,
-        },
-      ]}
-      slotProps={{
-        svg: {
-          children: (
-            <defs>
-              {/* 🏁 SVG Pattern: Animoidut raidat */}
-              <pattern
-                id="stripes-pattern"
-                width="10"
-                height="10"
-                patternUnits="userSpaceOnUse"
-                patternTransform="rotate(45)"
-              >
-                <rect width="5" height="10" fill="black">
-                  <animateTransform
-                    attributeType="XML"
-                    attributeName="patternTransform"
-                    type="translate"
-                    from="0,0"
-                    to="10,10"
-                    dur="1s"
-                    repeatCount="indefinite"
-                  />
-                </rect>
-              </pattern>
-            </defs>
-          ),
-        },
-      }}
-    />
+    <div style={{ width: 300, height: 200 }}>
+      <PieChart
+        ref={chartRef}
+        width={300}
+        height={200}
+        series={[
+          {
+            data: [
+              { id: 0, value: 40, label: "A" },
+              { id: 1, value: 30, label: "B" }, // Striped arc
+              { id: 2, value: 20, label: "C" },
+              { id: 3, value: 10, label: "D" },
+            ],
+            innerRadius: 50,
+            outerRadius: 100,
+          },
+        ]}
+      />
+
+      {/* SVG Pattern: Moved stripes */}
+      <svg width="300" height="300" viewBox="0 0 120 120">
+        <defs>
+          <pattern
+            id="moving-stripes"
+            width="10"
+            height="10"
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(45)"
+          >
+              <animate
+                attributeType="XML"
+                attributeName="x"
+                type="translate"
+                from="0%"
+                to="100%"
+                dur="15s"
+                repeatCount="indefinite"
+              />
+            <rect width="5" height="10" fill="yellow">
+            </rect>
+          </pattern>
+        </defs>
+      </svg>
+    </div>
   );
 }

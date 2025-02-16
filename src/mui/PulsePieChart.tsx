@@ -12,18 +12,18 @@ export default function PulsePieChart() {
       { id: 1, value: 30, label: 'B', color: 'yellow' },
       { id: 2, value: 30, label: 'C', color: 'green' },
     ]);
-
     const highlightedId = 2;
-    // const stripedId = 0;
-    const chartRef = React.useRef<SVGSVGElement | null>(null);
+    //const stripedId = 1;
+    //const chartRef = React.useRef<SVGSVGElement | null>(null);
 
     // React.useEffect(() => {
     //   if (chartRef.current) {
     //     console.log("Here we go...")
     //     const paths = chartRef.current.querySelectorAll("path");
-    //     if (paths[stripedId]) {
-    //       //paths[stripedId].style.fill = "url(#stripes-pattern)";
-    //       //paths[stripedId].style.fill = "black";
+    //     if (animateArc && paths[stripedId]) {
+    //       //paths[stripedId].setAttribute("fill", "url(#moving-stripes2)");
+    //       //paths[stripedId].fill = "url(#stripes-pattern2)";
+    //       //paths[stripedId].style.fill = "yellow";
     //     }
     //   }
     // }, []);
@@ -59,27 +59,49 @@ export default function PulsePieChart() {
       spacing={1}
       sx={{ width: '30%', justifyContent: 'center' }}>
       <PieChart
-        ref={chartRef}
+        //ref={chartRef}
         className="my-pie-chart"
         {...pieChartProps}
         sx={{
           [animateArc && `path:nth-of-type(${highlightedId})`]: {
             animation: "piechart-arc-pulse 10s infinite ease-out;",
-            //stroke: "#ffc733",
-            //strokeWidth: 3,
-            fill: "yellow",
+            fill: "url(#moving-stripes2)",
           },
         }}
         />
+        {/* SVG Pattern: Moved stripes */}
+        <svg viewBox="0 0 0 0">
+          <defs>
+            <pattern
+              id="moving-stripes2"
+              width="10"
+              height="10"
+              patternUnits="userSpaceOnUse"
+              patternTransform="rotate(45)"
+            >
+                <animate
+                  attributeType="XML"
+                  attributeName="x"
+                  type="translate"
+                  from="0%"
+                  to="100%"
+                  dur="30s"
+                  repeatCount="indefinite"
+                />
+              <rect width="5" height="10" fill="yellow">
+              </rect>
+            </pattern>
+          </defs>
+        </svg>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button id="button1" variant="contained" className="button1-animated"
+            sx={{ width: '60%' }}
+            onClick={handleClick}>
+            {animateArc ? "Stop animation" : "Start animation"}
+          </Button>
+        </div>
     </Stack>
     </div>
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button id="button1" variant="contained" className="button1-animated"
-          sx={{ width: '25%' }}
-          onClick={handleClick}>
-          {animateArc ? "Stop animation" : "Start animation"}
-        </Button>
-      </div>
-      </>
+    </>
   );
 }

@@ -35,7 +35,7 @@ export default function AnimatedStripedPieChart() {
       />
 
       {/* SVG Pattern: Moved stripes */}
-      <svg width="300" height="300" viewBox="0 0 120 120">
+      <svg viewBox="0 0 120 120">
         <defs>
           <pattern
             id="moving-stripes"

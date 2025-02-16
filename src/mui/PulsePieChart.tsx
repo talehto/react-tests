@@ -13,20 +13,6 @@ export default function PulsePieChart() {
       { id: 2, value: 30, label: 'C', color: 'green' },
     ]);
     const highlightedId = 2;
-    //const stripedId = 1;
-    //const chartRef = React.useRef<SVGSVGElement | null>(null);
-
-    // React.useEffect(() => {
-    //   if (chartRef.current) {
-    //     console.log("Here we go...")
-    //     const paths = chartRef.current.querySelectorAll("path");
-    //     if (animateArc && paths[stripedId]) {
-    //       //paths[stripedId].setAttribute("fill", "url(#moving-stripes2)");
-    //       //paths[stripedId].fill = "url(#stripes-pattern2)";
-    //       //paths[stripedId].style.fill = "yellow";
-    //     }
-    //   }
-    // }, []);
 
     const handleClick = () => {
       setAnimateArc(!animateArc)
@@ -44,6 +30,7 @@ export default function PulsePieChart() {
       ],
       width: 400,
       height: 400,
+      skipAnimation: false,
       slotProps: {
         legend: {
           hidden: true,
@@ -54,23 +41,21 @@ export default function PulsePieChart() {
   return (
     <>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
-    <Stack
-      direction={{ xs: 'column', xl: 'row' }}
-      spacing={1}
-      sx={{ width: '30%', justifyContent: 'center' }}>
-      <PieChart
-        //ref={chartRef}
-        className="my-pie-chart"
-        {...pieChartProps}
-        sx={{
-          [animateArc && `path:nth-of-type(${highlightedId})`]: {
-            animation: "piechart-arc-pulse 10s infinite ease-out;",
-            fill: "url(#moving-stripes2)",
-          },
-        }}
-        />
-        {/* SVG Pattern: Moved stripes */}
-        <svg viewBox="0 0 0 0">
+      <Stack
+        direction={{ xs: 'column', xl: 'row' }}
+        spacing={1}
+        sx={{ width: '30%', justifyContent: 'center' }}>
+        <PieChart
+          //ref={chartRef}
+          className="my-pie-chart"
+          {...pieChartProps}
+          sx={{
+            [animateArc && `path:nth-of-type(${highlightedId})`]: {
+              animation: "piechart-arc-pulse 10s infinite ease-out;",
+              fill: "url(#moving-stripes2)",
+            },
+          }}
+          >
           <defs>
             <pattern
               id="moving-stripes2"
@@ -92,7 +77,8 @@ export default function PulsePieChart() {
               </rect>
             </pattern>
           </defs>
-        </svg>
+        </PieChart>
+          
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Button id="button1" variant="contained" className="button1-animated"
             sx={{ width: '60%' }}
@@ -100,7 +86,7 @@ export default function PulsePieChart() {
             {animateArc ? "Stop animation" : "Start animation"}
           </Button>
         </div>
-    </Stack>
+      </Stack>
     </div>
     </>
   );

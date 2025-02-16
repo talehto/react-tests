@@ -22,7 +22,7 @@ createRoot(document.querySelector("#root")!).render(
   <StrictMode>
     <StyledEngineProvider injectFirst>
     <PulsePieChart />
-    <AnimatedStripes />
+    {/* <AnimatedStripes /> */}
     </StyledEngineProvider>
   </StrictMode>
 );

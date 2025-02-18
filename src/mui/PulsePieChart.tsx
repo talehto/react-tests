@@ -52,30 +52,39 @@ export default function PulsePieChart() {
           sx={{
             [animateArc && `path:nth-of-type(${highlightedId})`]: {
               animation: "piechart-arc-pulse 10s infinite ease-out;",
-              fill: "url(#moving-stripes2)",
+              fill: "url(#moving-shadow2)",
+              //style: "filter: url(#moving-stripes2)",
             },
           }}
           >
           <defs>
-            <pattern
-              id="moving-stripes2"
-              width="10"
-              height="10"
-              patternUnits="userSpaceOnUse"
-              patternTransform="rotate(45)"
-            >
-                <animate
-                  attributeType="XML"
-                  attributeName="x"
-                  type="translate"
-                  from="0%"
-                  to="100%"
-                  dur="30s"
-                  repeatCount="indefinite"
-                />
-              <rect width="5" height="10" fill="yellow">
-              </rect>
-            </pattern>
+          <radialGradient
+          id="moving-shadow2"
+          gradientUnits="userSpaceOnUse"
+          cx="100"
+          cy="100"
+          r="180"
+          fx="220"
+          fy="120"
+          gradientTransform="skewX(20) translate(-35, 0)">
+          <stop offset="0%" stopColor="#eeee8b" />
+          <stop offset="50%" stopColor="#f7f77b" />
+          <stop offset="70%" stopColor="#f8f8a5" />
+          <stop offset="100%" stopColor="#f7f793ea" />
+          <animateTransform
+              attributeName="gradientTransform"
+              type="translate"
+              values="150,0; -150,0; 150,0"
+              dur="7s"
+              repeatCount="indefinite"
+            />
+        </radialGradient>
+        {/* <rect
+          x="0"
+          y="0"
+          width="5"
+          height="5"
+          /> */}
           </defs>
         </PieChart>
           

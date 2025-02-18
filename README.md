@@ -8,6 +8,7 @@ npm run dev
 # Links
 - SVG manipulation: https://blog.logrocket.com/how-to-animate-svg-css-tutorial-examples/
 - SVG stripes example: https://stackoverflow.com/questions/71955809/svg-stripe-animation-with-curved-shapes
+- SVG shadow example: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/gradientTransform
 
 
 # React + TypeScript + Vite

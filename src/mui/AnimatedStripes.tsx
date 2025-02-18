@@ -1,15 +1,16 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 import { useEffect, useRef } from "react";
 
-export default function AnimatedStripedPieChart() {
+export default function ShadowPieChart() {
   const chartRef = useRef<SVGSVGElement | null>(null);
-  const stripedId = 1; // Striped arc
+  const shadowId = 1; // 🎯 Tämä lohko saa varjoefektin
 
   useEffect(() => {
     if (chartRef.current) {
       const paths = chartRef.current.querySelectorAll("path");
-      if (paths[stripedId]) {
-        paths[stripedId].setAttribute("fill", "url(#moving-stripes)");
+      if (paths[shadowId]) {
+        paths[shadowId].setAttribute("fill", "url(#moving-shadow)");
+        //paths[shadowId].setAttribute("style", "transform: translateX(400px);");
       }
     }
   }, []);
@@ -24,7 +25,7 @@ export default function AnimatedStripedPieChart() {
           {
             data: [
               { id: 0, value: 40, label: "A" },
-              { id: 1, value: 30, label: "B" }, // Striped arc
+              { id: 1, value: 30, label: "B" }, // 🎯 Tämä lohko saa varjon
               { id: 2, value: 20, label: "C" },
               { id: 3, value: 10, label: "D" },
             ],
@@ -34,28 +35,36 @@ export default function AnimatedStripedPieChart() {
         ]}
       />
 
-      {/* SVG Pattern: Moved stripes */}
+      {/* 🏁 SVG LinearGradient: Pehmeästi liikkuva varjo */}
       <svg viewBox="0 0 120 120">
         <defs>
-          <pattern
-            id="moving-stripes"
-            width="10"
-            height="10"
-            patternUnits="userSpaceOnUse"
-            patternTransform="rotate(45)"
-          >
-              <animate
-                attributeType="XML"
-                attributeName="x"
-                type="translate"
-                from="0%"
-                to="100%"
-                dur="15s"
-                repeatCount="indefinite"
-              />
-            <rect width="5" height="10" fill="yellow">
-            </rect>
-          </pattern>
+        <radialGradient
+          id="moving-shadow"
+          gradientUnits="userSpaceOnUse"
+          cx="9"
+          cy="100"
+          r="200"
+          fx="200"
+          fy="100"
+          gradientTransform="skewX(20) translate(-35, 0)">
+          <stop offset="0%" stopColor="#ececa7" />
+          <stop offset="50%" stopColor="#f7f77b" />
+          <stop offset="70%" stopColor="#f8f8a5" />
+          <stop offset="100%" stopColor="#f7f793ea" />
+          <animateTransform
+              attributeName="gradientTransform"
+              type="translate"
+              values="150,0; -150,0; 150,0"
+              dur="7s"
+              repeatCount="indefinite"
+            />
+        </radialGradient>
+        <rect
+          x="0"
+          y="0"
+          width="200"
+          height="200"
+          />
         </defs>
       </svg>
     </div>

@@ -16,41 +16,41 @@
     transform: scale(1);
     /* fill: yellow; */
     /* stroke: rgb(78, 78, 9); */
-    stroke: green;
-    opacity: 0.6;
-    stroke-width: 4;
+    /* stroke: green; */
+    /* opacity: 0.6; */
+    /* stroke-width: 4; */
   }
   25% {
     transform: scale(0.9);
     /* fill: rgb(126, 126, 43); */
     /* stroke: rgb(10, 170, 64); */
-    stroke: green;
-    opacity: 0.6;
-    stroke-width: 5;
+    /* stroke: green; */
+    /* opacity: 0.6; */
+    /* stroke-width: 5; */
   }
   50% {
     transform: scale(1.0);
     /* fill:  rgb(102, 102, 33); */
     /* stroke: rgb(211, 23, 23); */
-    stroke: green;
-    opacity: 0.6;
-    stroke-width: 6;
+    /* stroke: green; */
+    /* opacity: 0.6; */
+    /* stroke-width: 6; */
   }
   75% {
     transform: scale(0.9);
     /* fill:  rgb(235, 235, 75); */
     /* stroke: rgb(67, 8, 134); */
-    stroke: green;
-    opacity: 0.6;
-    stroke-width: 5;
+    /* stroke: green; */
+    /* opacity: 0.6; */
+    /* stroke-width: 5; */
   }
   100% {
     transform: scale(1);
     /* fill:  yellow; */
     /* stroke: rgb(125, 84, 172); */
-    stroke: green;
-    opacity: 0.6;
-    stroke-width: 4;
+    /* stroke: green; */
+    /* opacity: 0.6; */
+    /* stroke-width: 4; */
   }
 }
 

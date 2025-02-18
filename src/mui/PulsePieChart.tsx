@@ -61,7 +61,7 @@ export default function PulsePieChart() {
               gradientUnits="userSpaceOnUse"
               cx="100"
               cy="100"
-              r="180"
+              r="190"
               fx="220"
               fy="120"
               gradientTransform="skewX(20) translate(-35, 0)">

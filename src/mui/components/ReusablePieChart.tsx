@@ -1,11 +1,24 @@
 import * as React from 'react';
 import { PieChart, PieChartProps } from '@mui/x-charts/PieChart';
+import { css, keyframes } from '@emotion/react';
 
 interface ReusablePieChartProps extends PieChartProps {
   animateArc: boolean;
   highlightedId: number;
   gradientColors: string[];
 }
+
+const piechartArcPulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
 
 const ReusablePieChart: React.FC<ReusablePieChartProps> = ({ animateArc, highlightedId, gradientColors, ...pieChartProps }) => {
   return (
@@ -15,7 +28,7 @@ const ReusablePieChart: React.FC<ReusablePieChartProps> = ({ animateArc, highlig
       sx={{
         ...(animateArc && {
           [`path:nth-of-type(${highlightedId})`]: {
-            animation: "piechart-arc-pulse 10s infinite ease-out;",
+            animation: `${piechartArcPulse} 7s infinite ease-out`,
             fill: "url(#moving-shadow2)",
           },
         }),

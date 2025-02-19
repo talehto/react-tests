@@ -37,7 +37,7 @@ export default function PulsePieChart() {
     },
   };
 
-  const gradientColors = ["#eeee7e", "#f3f33f", "#f3f331", "#f1f170"];
+  const gradientColors = ["#eeee7e", "#f7f733", "#f3f322", "#f1f170"];
 
   return (
     <>

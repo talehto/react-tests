@@ -11,7 +11,7 @@
   animation: piechart-arc-pulse 10s infinite ease-out;
 } */
 
-@keyframes piechart-arc-pulse {
+/* @keyframes piechart-arc-pulse {
   0% {
     transform: scale(1);
   }
@@ -27,5 +27,5 @@
   100% {
     transform: scale(1);
   }
-}
+} */
 

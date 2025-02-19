@@ -22,17 +22,17 @@ const ReusablePieChart: React.FC<ReusablePieChartProps> = ({ animateArc, highlig
         <radialGradient
           id="moving-shadow2"
           gradientUnits="userSpaceOnUse"
-          cx="100"
+          cx="170"
           cy="100"
           r="190"
-          fx="220"
+          fx="200"
           fy="120"
           gradientTransform="skewX(20) translate(-35, 0)"
         >
-          <stop offset="0%" stopColor="#eeee8b" />
-          <stop offset="50%" stopColor="#f7f77b" />
-          <stop offset="70%" stopColor="#f8f8a5" />
-          <stop offset="100%" stopColor="#eeee8b" />
+          <stop offset="0%" stopColor="#eeee7e" />
+          <stop offset="50%" stopColor="#f3f33f" />
+          <stop offset="70%" stopColor="#f3f331" />
+          <stop offset="100%" stopColor="#f1f170" />
           <animateTransform
             attributeName="gradientTransform"
             type="translate"

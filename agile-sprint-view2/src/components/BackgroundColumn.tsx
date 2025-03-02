@@ -5,13 +5,13 @@ import CardHeader from '@mui/material/CardHeader';
 import { useTheme } from '@mui/material/styles';
 import { SxProps, Theme } from '@mui/system';
 
-interface ColumnHeaderProps {
+interface BackgroundColumnProps {
   title: string;
   size: { xs: number, sm?: number, md?: number, lg?: number, xl?: number };
   sx_args?: SxProps<Theme>;
 }
 
-const ColumnHeader: React.FC<ColumnHeaderProps> = ({ title, size, sx_args }) => {
+const ColumnHeader: React.FC<BackgroundColumnProps> = ({ title, size, sx_args }) => {
   const theme = useTheme();
 
   return (

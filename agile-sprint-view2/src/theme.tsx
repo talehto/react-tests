@@ -14,7 +14,7 @@ const theme = createTheme({
       main: '#ECCDB4', // Replace with your primary color
     },
     secondary: {
-      main: '#dc004e', // Replace with your secondary color
+      main: '#FEA1A1', // Replace with your secondary color
     },
     background: {
       default: '#F9FBE7', // Replace with your background color

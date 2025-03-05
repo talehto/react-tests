@@ -17,7 +17,7 @@ const BackgroundColumn: React.FC<BackgroundColumnProps> = ({ title, size, paddin
 
   return (
     <Grid size={size} sx={{ padding, display: 'flex', flexDirection: 'column' }}>
-      <Card sx={{ flexGrow: 1, backgroundColor: theme.palette.column_background.default, ...sx_args }}>
+      <Card sx={{ flexGrow: 1, backgroundColor: theme.palette.column_background.default, borderRadius: 3, ...sx_args }}>
         <CardHeader title={title} 
           sx={{ textAlign: 'center', alignItems: 'flex-start' }}
         />

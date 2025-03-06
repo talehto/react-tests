@@ -8,16 +8,16 @@ import { SxProps, Theme } from '@mui/system';
 interface BackgroundColumnProps {
   title: string;
   size: { xs: number, sm?: number, md?: number, lg?: number, xl?: number };
-  padding?: number;
-  sx_args?: SxProps<Theme>;
+  grid_sx_args?: SxProps<Theme>;
+  card_sx_args?: SxProps<Theme>;
 }
 
-const BackgroundColumn: React.FC<BackgroundColumnProps> = ({ title, size, padding, sx_args }) => {
+const BackgroundColumn: React.FC<BackgroundColumnProps> = ({ title, size, grid_sx_args, card_sx_args }) => {
   const theme = useTheme();
 
   return (
-    <Grid size={size} sx={{ padding, display: 'flex', flexDirection: 'column' }}>
-      <Card sx={{ flexGrow: 1, backgroundColor: theme.palette.column_background.default, borderRadius: 3, ...sx_args }}>
+    <Grid size={size} sx={{ display: 'flex', flexDirection: 'column', ...grid_sx_args }}>
+      <Card sx={{ flexGrow: 1, backgroundColor: theme.palette.column_background.default, borderRadius: 3, ...card_sx_args }}>
         <CardHeader title={title} 
           sx={{ textAlign: 'center', alignItems: 'flex-start' }}
         />

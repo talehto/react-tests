@@ -21,7 +21,7 @@ const theme = createTheme({
     },
     text: {
       primary: '#000000', // Replace with your primary text color
-      secondary: '#ffffff', // Replace with your secondary text color
+      secondary: '#FEA1A1', // Replace with your secondary text color
     },    // Add more colors as needed
     column_background: {
       default: '#F0EDD4', // Replace with your column background color

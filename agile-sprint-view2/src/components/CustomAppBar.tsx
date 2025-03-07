@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography} from '@mui/material';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -16,7 +16,7 @@ const CustomAppBar: React.FC<CustomAppBarProps> = ({ title, onButtonClick, sx })
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           {title}
         </Typography>
-        <Fab color="secondary" aria-label="add">
+        <Fab color="secondary" aria-label="add" onClick={onButtonClick}>
           <AddIcon />
         </Fab>
       </Toolbar>

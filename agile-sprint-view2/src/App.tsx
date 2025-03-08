@@ -42,9 +42,8 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, width: "100vw", height: "100vh", bgcolor: 'background.default' }}>
-      <CustomAppBar title="Kanban board" sx={{ width: "98vw",  mt: 2 }} onButtonClick={handleButtonClick} />
-        <p>{storyTitle}</p>
-        <Grid container sx={{ width: "70vw", height: "100vh", flexGrow: 1, margin: 'auto' }}>
+      <CustomAppBar title="Kanban board" sx={{ mt: 2, mx: 2, width: "calc(100% - 32px)" }} onButtonClick={handleButtonClick} />
+        <Grid container sx={{ width: "70vw", height: "100vh", flexGrow: 1, margin: 'auto'}}>
         {columns.map((column, index) => (
             <BackgroundColumn
               key={index}

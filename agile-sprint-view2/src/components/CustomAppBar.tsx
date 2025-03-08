@@ -11,7 +11,7 @@ interface CustomAppBarProps {
 
 const CustomAppBar: React.FC<CustomAppBarProps> = ({ title, onButtonClick, sx }) => {
   return (
-    <AppBar position="static" sx={{ marginBottom: 2, borderRadius: 2, minHeight: '60px', marginLeft: 2, ...sx }}>
+    <AppBar position="static" sx={{ borderRadius: 2, minHeight: '60px', ...sx }}>
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           {title}

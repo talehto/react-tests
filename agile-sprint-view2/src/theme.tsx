@@ -8,6 +8,8 @@ declare module '@mui/material/styles' {
   }
 }
 
+// https://colorhunt.co/palette/f9fbe7f0edd4eccdb4fea1a1
+
 const theme = createTheme({
   palette: {
     primary: {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
-import { CssBaseline, ThemeProvider, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button, TextField } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from './theme';
 import CustomAppBar from './components/CustomAppBar';
 import BackgroundColumn from './components/BackgroundColumn';
@@ -17,14 +17,11 @@ const App: React.FC = () => {
   };
   
   const handleCloseStoryButtonClick = () => {
-    //console.log(storyTitle);
     setOpenAddStoryDialog(false);
   };
 
   const handleCancelStoryButtonClick = () => {
     setStoryTitle('');
-    // console.log('cancel button handler');
-    // console.log(storyTitle);
     setOpenAddStoryDialog(false);
   };
 

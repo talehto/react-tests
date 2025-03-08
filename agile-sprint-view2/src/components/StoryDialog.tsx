@@ -3,14 +3,14 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } 
 import theme from '../theme';
 
 interface StoryDialogProps {
-  open: boolean;
+  openAddStoryDialog: boolean;
   onClose: () => void;
   onCancel: () => void;
   onStoryTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   storyTitle: string;
 }
 
-const StoryDialog: React.FC<StoryDialogProps> = ({ open, onClose, onCancel, onStoryTitleChange, storyTitle }) => {
+const StoryDialog: React.FC<StoryDialogProps> = ({ openAddStoryDialog, onClose, onCancel, onStoryTitleChange, storyTitle }) => {
   const handleClose = () => {
     onCancel();
   };
@@ -18,7 +18,7 @@ const StoryDialog: React.FC<StoryDialogProps> = ({ open, onClose, onCancel, onSt
   return (
     <Dialog
       sx={{ borderRadius: 2 }}
-      open={open}
+      open={openAddStoryDialog}
       onClose={handleClose}
       maxWidth="md"
       fullWidth

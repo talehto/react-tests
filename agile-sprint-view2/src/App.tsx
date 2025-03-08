@@ -9,23 +9,23 @@ import StoryDialog from './components/StoryDialog';
 
 const App: React.FC = () => {
 
-  const [open, setOpen] = useState(false);
+  const [openAddStoryDialog, setOpenAddStoryDialog] = useState(false);
   const [storyTitle, setStoryTitle] = useState('');
   
-  const handleButtonClick = () => {
-    setOpen(true);
+  const handleAddStoryButtonClick = () => {
+    setOpenAddStoryDialog(true);
   };
   
-  const handleClose = () => {
+  const handleCloseStoryButtonClick = () => {
     //console.log(storyTitle);
-    setOpen(false);
+    setOpenAddStoryDialog(false);
   };
 
-  const handleCancelButton = () => {
+  const handleCancelStoryButtonClick = () => {
     setStoryTitle('');
     // console.log('cancel button handler');
     // console.log(storyTitle);
-    setOpen(false);
+    setOpenAddStoryDialog(false);
   };
 
   const handleStoryTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +42,9 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, width: "100vw", height: "100vh", bgcolor: 'background.default' }}>
-      <CustomAppBar title="Kanban board" sx={{ mt: 2, mx: 2, width: "calc(100% - 32px)" }} onButtonClick={handleButtonClick} />
+      <CustomAppBar title="Kanban board" sx={{ mt: 2, mx: 2, width: "calc(100% - 32px)" }} onButtonClick={handleAddStoryButtonClick} />
+      <p>{storyTitle}</p>
+      {/* See doc for a "margin: auto" in below Grig component. https://dev.to/ritikaagrawal08/all-about-margin-auto-in-css-centering-and-more-2b2g */}
         <Grid container sx={{ width: "70vw", height: "100vh", flexGrow: 1, margin: 'auto'}}>
         {columns.map((column, index) => (
             <BackgroundColumn
@@ -56,9 +58,9 @@ const App: React.FC = () => {
         </Grid>
       </Box>
       <StoryDialog
-        open={open}
-        onClose={handleClose}
-        onCancel={handleCancelButton}
+        openAddStoryDialog={openAddStoryDialog}
+        onClose={handleCloseStoryButtonClick}
+        onCancel={handleCancelStoryButtonClick}
         onStoryTitleChange={handleStoryTitleChange}
         storyTitle={storyTitle}
       />

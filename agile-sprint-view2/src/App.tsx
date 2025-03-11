@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
-import { CssBaseline, ThemeProvider, Accordion, AccordionSummary, Typography } from '@mui/material';
+import { CssBaseline, ThemeProvider, Accordion, AccordionSummary, AccordionDetails, Typography, Card, CardContent } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import theme from './theme';
+import { theme } from './theme';
 import CustomAppBar from './components/CustomAppBar';
 import BackgroundColumn from './components/BackgroundColumn';
 import StoryDialog from './components/StoryDialog';
@@ -45,7 +45,6 @@ const App: React.FC = () => {
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, width: "100vw", height: "100vh", bgcolor: 'background.default' }}>
       <CustomAppBar title="Kanban board" sx={{ mt: 2, mx: 2, width: "calc(100% - 32px)" }} onButtonClick={handleAddStoryButtonClick} />
       {/* See doc for a "margin: auto" in below Grig component. https://dev.to/ritikaagrawal08/all-about-margin-auto-in-css-centering-and-more-2b2g */}
-        {/* <Grid container sx={{ width: "70vw", height: "100vh", flexGrow: 1, margin: 'auto'}}> */}
         <Box sx={{ position: 'relative', flexGrow: 1, width: "70vw", height: "100vh", margin: 'auto' }}>
           <Grid container sx={{ width: "70vw", height: "85vh", flexGrow: 1, margin: 'auto', zIndex: 1 }}>
           {columns.map((column, index) => (
@@ -60,14 +59,39 @@ const App: React.FC = () => {
           </Grid>
           <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 2, mt: 10 }}>
             {stories.map((story, index) => (
-              <Accordion sx={{ mt: 2, borderRadius: 2, bgcolor: 'primary.main' }} key={index}>
+              <Accordion 
+                key={index}
+                sx={{ 
+                      mt: 2, 
+                      borderRadius: 2, 
+                      bgcolor: 'transparent', 
+                      border: '1px solid',
+                      borderColor: 'primary.main'
+                    }}
+              >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1-content"
                 id={`story-${index}`}
+                sx={{ 
+                      bgcolor: 'primary.main', 
+                      borderColor: 'primary.main' 
+                    }}
               >
                 <Typography component="span">{story}</Typography>
               </AccordionSummary>
+              <AccordionDetails sx={{ 
+                                      border: '1px solid', 
+                                      borderColor: 'primary.main' 
+                                    }}>
+                  <Card sx={{ width: '28%' }}>
+                    <CardContent>
+                      <Typography variant="body2" color="text.secondary">
+                        This is the content of the card inside the accordion.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </AccordionDetails>
             </Accordion>
             ))}
           </Box>

@@ -1,4 +1,4 @@
-import { createTheme, PaletteOptions } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface PaletteOptions {
@@ -10,7 +10,7 @@ declare module '@mui/material/styles' {
 
 // https://colorhunt.co/palette/f9fbe7f0edd4eccdb4fea1a1
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       main: '#ECCDB4', // Replace with your primary color
@@ -31,4 +31,4 @@ const theme = createTheme({
   }
 });
 
-export default theme;
+//export default theme;

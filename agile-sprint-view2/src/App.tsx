@@ -7,6 +7,7 @@ import { theme } from './theme';
 import CustomAppBar from './components/CustomAppBar';
 import BackgroundColumn from './components/BackgroundColumn';
 import StoryDialog from './components/StoryDialog';
+import StoryAccordion from './components/StoryAccordion';
 
 const App: React.FC = () => {
 
@@ -59,40 +60,7 @@ const App: React.FC = () => {
           </Grid>
           <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 2, mt: 10 }}>
             {stories.map((story, index) => (
-              <Accordion 
-                key={index}
-                sx={{ 
-                      mt: 2, 
-                      borderRadius: 2, 
-                      bgcolor: 'transparent', 
-                      border: '1px solid',
-                      borderColor: 'primary.main'
-                    }}
-              >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id={`story-${index}`}
-                sx={{ 
-                      bgcolor: 'primary.main', 
-                      borderColor: 'primary.main' 
-                    }}
-              >
-                <Typography component="span">{story}</Typography>
-              </AccordionSummary>
-              <AccordionDetails sx={{ 
-                                      border: '1px solid', 
-                                      borderColor: 'primary.main' 
-                                    }}>
-                  <Card sx={{ width: '28%' }}>
-                    <CardContent>
-                      <Typography variant="body2" color="text.secondary">
-                        This is the content of the card inside the accordion.
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </AccordionDetails>
-            </Accordion>
+              <StoryAccordion key={index} story={story} index={index} />
             ))}
           </Box>
         </Box>

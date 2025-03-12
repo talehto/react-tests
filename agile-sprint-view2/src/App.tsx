@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
-import { CssBaseline, ThemeProvider, Accordion, AccordionSummary, AccordionDetails, Typography, Card, CardContent } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { theme } from './theme';
 import CustomAppBar from './components/CustomAppBar';
 import BackgroundColumn from './components/BackgroundColumn';
+import SwimlaneHeader from './components/SwimlaneHeader';
 import StoryDialog from './components/StoryDialog';
 import StoryAccordion from './components/StoryAccordion';
 
@@ -45,11 +45,10 @@ const App: React.FC = () => {
       <CssBaseline />
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, width: "100vw", height: "100vh", bgcolor: 'background.default' }}>
       <CustomAppBar title="Kanban board" sx={{ mt: 2, mx: 2, width: "calc(100% - 32px)" }} onButtonClick={handleAddStoryButtonClick} />
-      {/* See doc for a "margin: auto" in below Grig component. https://dev.to/ritikaagrawal08/all-about-margin-auto-in-css-centering-and-more-2b2g */}
-        <Box sx={{ position: 'relative', flexGrow: 1, width: "70vw", height: "100vh", margin: 'auto' }}>
-          <Grid container sx={{ width: "70vw", height: "85vh", flexGrow: 1, margin: 'auto', zIndex: 1 }}>
+        <Box sx={{ position: 'relative', flexGrow: 1, width: "90vw", height: "100vh", margin: 'auto' }}>
+          <Grid container sx={{ width: "90vw", height: "85vh", flexGrow: 1, margin: 'auto' }}>
           {columns.map((column, index) => (
-              <BackgroundColumn
+              <SwimlaneHeader
                 key={index}
                 title={column.title}
                 size={column.size}
@@ -58,7 +57,7 @@ const App: React.FC = () => {
               />
             ))}
           </Grid>
-          <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 2, mt: 10 }}>
+          <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', mt: 10 }}>
             {stories.map((story, index) => (
               <StoryAccordion key={index} story={story} index={index} />
             ))}

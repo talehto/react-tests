@@ -27,7 +27,7 @@ export const theme = createTheme({
     },    // Add more colors as needed
     column_background: {
       default: '#F0EDD4', // Replace with your column background color
-    },
+    }
   }
 });
 

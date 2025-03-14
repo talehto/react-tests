@@ -35,7 +35,7 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
                               border: '1px solid', 
                               borderColor: 'primary.main' 
                             }}>
-        <Grid size="{ xs: 4, md: 4 }" sx={{ display: 'flex', flexDirection: 'column', pl: 2, pr: 2, pt: 2, pb: 2 }}>
+        {/* <Grid size="{ xs: 4, md: 4 }" sx={{ display: 'flex', flexDirection: 'column', pl: 2, pr: 2, pt: 2, pb: 2 }}> */}
           <Card sx={{ width: '28%' }}>
             <CardContent>
               <Typography variant="body2" color="text.secondary">
@@ -43,7 +43,7 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
               </Typography>
             </CardContent>
           </Card>
-        </Grid>
+        {/* </Grid> */}
       </AccordionDetails>
     </Accordion>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider, Container, Stack, Chip } from '@mui/material';
 import { theme } from './theme';
 import CustomAppBar from './components/CustomAppBar';
 import BackgroundColumn from './components/BackgroundColumn';
@@ -43,27 +43,13 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, width: "100vw", height: "100vh", bgcolor: 'background.default' }}>
-      <CustomAppBar title="Kanban board" sx={{ mt: 2, mx: 2, width: "calc(100% - 32px)" }} onButtonClick={handleAddStoryButtonClick} />
-        <Box sx={{ position: 'relative', flexGrow: 1, width: "90vw", height: "100vh", margin: 'auto' }}>
-          <Grid container sx={{ width: "90vw", height: "85vh", flexGrow: 1, margin: 'auto' }}>
-          {columns.map((column, index) => (
-              <SwimlaneHeader
-                key={index}
-                title={column.title}
-                size={column.size}
-                grid_sx_args={{ pl: 2, pr: 2, pt: 2, pb: 2 }}
-                card_sx_args={{ mt: 2 }}
-              />
-            ))}
-          </Grid>
-          <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', mt: 10 }}>
-            {stories.map((story, index) => (
-              <StoryAccordion key={index} story={story} index={index} />
-            ))}
-          </Box>
-        </Box>
-      </Box>
+      <Container maxWidth={false}>
+        <CustomAppBar title="Kanban board" sx={{ display: 'flex', flexDirection: 'column', mt: 2 }} onButtonClick={handleAddStoryButtonClick} />
+        <Container maxWidth={false} sx={{ mt: 2 }}>
+          <SwimlaneHeader />
+        </Container>
+        
+      </Container>
       <StoryDialog
         openAddStoryDialog={openAddStoryDialog}
         onClose={handleCloseStoryButtonClick}

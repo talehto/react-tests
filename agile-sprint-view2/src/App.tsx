@@ -47,8 +47,7 @@ const App: React.FC = () => {
         <CustomAppBar title="Kanban board" sx={{ display: 'flex', flexDirection: 'column', mt: 2 }} onButtonClick={handleAddStoryButtonClick} />
         <Container maxWidth={false} sx={{ mt: 2 }}>
           <SwimlaneHeader />
-        </Container>
-        
+        </Container>        
       </Container>
       <StoryDialog
         openAddStoryDialog={openAddStoryDialog}

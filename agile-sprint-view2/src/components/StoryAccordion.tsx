@@ -1,12 +1,22 @@
 import React from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Typography, Card, CardContent } from '@mui/material';
-import Grid from '@mui/material/Grid2';
+import { Accordion, AccordionSummary, AccordionDetails, Typography, Card, CardContent, Paper, Stack, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { styled } from '@mui/material/styles';
 
 interface StoryAccordionProps {
   story: string;
   index: number;
 }
+
+const SwimlaneItem = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.column_background.default,
+  flex: 1,
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  zIndex: 1,
+}));
 
 const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
   return (
@@ -33,17 +43,45 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
       </AccordionSummary>
       <AccordionDetails sx={{ 
                               border: '1px solid', 
-                              borderColor: 'primary.main' 
+                              borderColor: 'primary.main',
+                              position: 'relative' 
                             }}>
-        {/* <Grid size="{ xs: 4, md: 4 }" sx={{ display: 'flex', flexDirection: 'column', pl: 2, pr: 2, pt: 2, pb: 2 }}> */}
-          <Card sx={{ width: '28%' }}>
-            <CardContent>
+        <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+        <Stack
+          direction="row"
+          spacing={2}
+          flexWrap="nowrap"
+          // sx={{ ml: 2, mr: 2, zIndex: 1 }}
+          sx={{ zIndex: 1 }}
+        >
+          <SwimlaneItem>
+          <Card sx={{ zIndex: 2, mt: 1 }}>
+            <CardContent sx={{ bgcolor: 'background.default', border: '1px solid', borderColor: 'primary.main' }}>
               <Typography variant="body2" color="text.secondary">
                 This is the content of the card inside the accordion {story}.
               </Typography>
             </CardContent>
           </Card>
-        {/* </Grid> */}
+          <Card sx={{ zIndex: 2, mt: 1 }}>
+            <CardContent sx={{ bgcolor: 'background.default', border: '1px solid', borderColor: 'primary.main' }}>
+              <Typography variant="body2" color="text.secondary">
+                This is the content of the card inside the accordion {story}.
+              </Typography>
+            </CardContent>
+          </Card>
+          </SwimlaneItem>
+          <SwimlaneItem>
+            <Card sx={{ zIndex: 2, mt: 1 }}>
+              <CardContent sx={{ bgcolor: 'background.default', border: '1px solid', borderColor: 'primary.main' }}>
+                <Typography variant="body2" color="text.secondary">
+                  This is the content of the card inside the accordion {story}.
+                </Typography>
+              </CardContent>
+            </Card>
+          </SwimlaneItem>
+          <SwimlaneItem />
+        </Stack>
+        </Box>
       </AccordionDetails>
     </Accordion>
   );

@@ -9,9 +9,6 @@ const SwimlaneItem = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
 }));
 
 const SwimlaneHeader: React.FC = () => {
@@ -20,7 +17,7 @@ const SwimlaneHeader: React.FC = () => {
       direction="row"
       spacing={2}
       flexWrap="nowrap"
-      sx={{pr: 6, pl: 6 }}
+      sx={{pl: 2, pr: 2 }}
     >
       <SwimlaneItem>Todo</SwimlaneItem>
       <SwimlaneItem>In progress</SwimlaneItem>

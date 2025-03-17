@@ -22,9 +22,6 @@ const SwimlaneHeader: React.FC = () => {
       <SwimlaneItem>Todo</SwimlaneItem>
       <SwimlaneItem>In progress</SwimlaneItem>
       <SwimlaneItem>Done</SwimlaneItem>
-      {/* <Chip label="Todo" sx={{ backgroundColor: theme.palette.primary.main, flex: 1 }} />
-      <Chip label="In progress" sx={{ backgroundColor: theme.palette.primary.main, flex: 1 }} />
-      <Chip label="Done" sx={{ backgroundColor: theme.palette.primary.main, flex: 1 }} /> */}
     </Stack>
   );
 };

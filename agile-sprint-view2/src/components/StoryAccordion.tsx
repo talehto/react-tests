@@ -15,7 +15,6 @@ const SwimlaneItem = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
-  zIndex: 1,
 }));
 
 const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
@@ -46,23 +45,21 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
                               borderColor: 'primary.main',
                               position: 'relative' 
                             }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
         <Stack
           direction="row"
           spacing={2}
           flexWrap="nowrap"
-          // sx={{ ml: 2, mr: 2, zIndex: 1 }}
-          sx={{ zIndex: 1 }}
+          //sx={{ zIndex: 1 }}
         >
           <SwimlaneItem>
-          <Card sx={{ zIndex: 2, mt: 1 }}>
+          <Card sx={{ mt: 1 }}>
             <CardContent sx={{ bgcolor: 'background.default', border: '1px solid', borderColor: 'primary.main' }}>
               <Typography variant="body2" color="text.secondary">
                 This is the content of the card inside the accordion {story}.
               </Typography>
             </CardContent>
           </Card>
-          <Card sx={{ zIndex: 2, mt: 1 }}>
+          <Card sx={{ mt: 1 }}>
             <CardContent sx={{ bgcolor: 'background.default', border: '1px solid', borderColor: 'primary.main' }}>
               <Typography variant="body2" color="text.secondary">
                 This is the content of the card inside the accordion {story}.
@@ -71,7 +68,7 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
           </Card>
           </SwimlaneItem>
           <SwimlaneItem>
-            <Card sx={{ zIndex: 2, mt: 1 }}>
+            <Card sx={{ mt: 1 }}>
               <CardContent sx={{ bgcolor: 'background.default', border: '1px solid', borderColor: 'primary.main' }}>
                 <Typography variant="body2" color="text.secondary">
                   This is the content of the card inside the accordion {story}.
@@ -81,7 +78,6 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
           </SwimlaneItem>
           <SwimlaneItem />
         </Stack>
-        </Box>
       </AccordionDetails>
     </Accordion>
   );

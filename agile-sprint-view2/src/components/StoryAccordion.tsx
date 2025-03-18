@@ -1,7 +1,6 @@
 import React from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Typography, Card, CardContent, Paper, Stack, Box } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Typography, Card, CardContent, Stack } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { styled } from '@mui/material/styles';
 import SwimlaneItemBackground from './SwimlaneItemBackground';
 
 interface StoryAccordionProps {

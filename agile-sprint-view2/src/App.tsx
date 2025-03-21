@@ -3,7 +3,7 @@ import { CssBaseline, ThemeProvider, Container } from '@mui/material';
 import { theme } from './theme';
 import CustomAppBar from './components/CustomAppBar';
 import SwimlaneHeader from './components/SwimlaneHeader';
-import StoryDialog from './components/StoryDialog';
+import AddItemDialog from './components/AddItemDialog';
 import StoryAccordion from './components/StoryAccordion';
 
 const App: React.FC = () => {
@@ -43,8 +43,9 @@ const App: React.FC = () => {
             ))}
         </Container>        
       </Container>
-      <StoryDialog
-        openAddStoryDialog={openAddStoryDialog}
+      <AddItemDialog
+        openAddItemDialog={openAddStoryDialog}
+        itemType='Story'
         onClose={handleCloseStoryButtonClick}
         onCancel={handleCancelStoryButtonClick}
         onStoryTitleChange={handleStoryTitleChange}

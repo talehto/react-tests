@@ -1,16 +1,16 @@
 import React from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from '@mui/material';
-import { theme } from '../theme';
 
-interface StoryDialogProps {
-  openAddStoryDialog: boolean;
-  onClose: () => void;
-  onCancel: () => void;
+interface AddItemDialogProps {
+  openAddItemDialog: boolean;
+  itemType: string;
+  onClose: (event: React.MouseEvent<HTMLElement>) => void;
+  onCancel: (event: React.MouseEvent<HTMLElement>) => void;
   onStoryTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   storyTitle: string;
 }
 
-const StoryDialog: React.FC<StoryDialogProps> = ({ openAddStoryDialog, onClose, onCancel, onStoryTitleChange, storyTitle }) => {
+const AddItemDialog: React.FC<AddItemDialogProps> = ({ openAddItemDialog, itemType, onClose, onCancel, onStoryTitleChange, storyTitle }) => {
   const handleClose = () => {
     onCancel();
   };
@@ -18,18 +18,18 @@ const StoryDialog: React.FC<StoryDialogProps> = ({ openAddStoryDialog, onClose, 
   return (
     <Dialog
       sx={{ borderRadius: 2 }}
-      open={openAddStoryDialog}
+      open={openAddItemDialog}
       onClose={handleClose}
       maxWidth="md"
       fullWidth
     >
-      <DialogTitle sx={{ borderRadius: 2, margin: 1, bgcolor: 'secondary.main' }}>{"Add Story"}</DialogTitle>
+      <DialogTitle sx={{ borderRadius: 2, margin: 1, bgcolor: 'secondary.main' }}>{`Add ${itemType}`}</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           margin="dense"
           id="name"
-          label="Story Title"
+          label={`${itemType} title`}
           type="text"
           fullWidth
           variant="outlined"
@@ -38,10 +38,10 @@ const StoryDialog: React.FC<StoryDialogProps> = ({ openAddStoryDialog, onClose, 
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} sx={{ color: theme.palette.text.primary }}>
+        <Button onClick={onClose} sx={{ color: "text.primary" }}>
           Close
         </Button>
-        <Button onClick={onCancel} sx={{ color: theme.palette.text.primary }}>
+        <Button onClick={onCancel} sx={{ color: "text.primary" }}>
           Cancel
         </Button>
       </DialogActions>
@@ -49,4 +49,4 @@ const StoryDialog: React.FC<StoryDialogProps> = ({ openAddStoryDialog, onClose, 
   );
 }
 
-export default StoryDialog;
+export default AddItemDialog;

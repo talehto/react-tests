@@ -4,10 +4,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SwimlaneItemBackground from './SwimlaneItemBackground';
 import AddItemDialog from './AddItemDialog';
+import TaskCard from './TaskCard';
 
 interface StoryAccordionProps {
   story: string;
   index: number;
+}
+interface TaskDict {
+  [key: string]: string[];
 }
 
 const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
@@ -18,6 +22,7 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
   const [openAddTaskDialog, setOpenAddTaskDialog] = useState(false);
   const [taskTitle, setTaskTitle] = useState('');
   const [expandAccordionDetails, setExpandAccordionDetails] = useState<boolean>(false);
+  const [tasks, setTasks] = useState<TaskDict>({});
 
   const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     // This prevents the opening a AccorionSummary when clicking on the menu.
@@ -36,7 +41,7 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
   };
   
   const handleCloseTaskButtonClick = (event: React.MouseEvent<HTMLElement>) => {
-    //setStories([...stories, storyTitle]);
+    addTask('Todo', taskTitle);
     setOpenAddTaskDialog(false);
     handleMenuClose(event);
     setTaskTitle('');
@@ -57,7 +62,18 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
   const handleAccordionChange = (_: React.ChangeEvent<{}>, expanded: boolean) => {
     setExpandAccordionDetails(expanded);
   };
-  
+
+  const addTask = (key: string, taskTitle: string) => {
+    setTasks(prevTasks => ({
+      ...prevTasks,
+      [key]: prevTasks[key] ? [...prevTasks[key], taskTitle] : [taskTitle]
+    }));
+  };
+
+  const getTasksByKey = (key: string): string[] => {
+    return tasks[key] || [];
+  };
+
   return (
     <Accordion 
       key={index}
@@ -114,31 +130,20 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
           flexWrap="nowrap"
         >
           <SwimlaneItemBackground>
-            <Card sx={{ mt: 1 }}>
-              <CardContent sx={{ bgcolor: 'background.default', border: '1px solid', borderColor: 'primary.main' }}>
-                <Typography variant="body2" color="text.secondary">
-                  This is the content of the card inside the accordion {story}.
-                </Typography>
-              </CardContent>
-            </Card>
-            <Card sx={{ mt: 1 }}>
-              <CardContent sx={{ bgcolor: 'background.default', border: '1px solid', borderColor: 'primary.main' }}>
-                <Typography variant="body2" color="text.secondary">
-                  This is the content of the card inside the accordion {story}.
-                </Typography>
-              </CardContent>
-            </Card>
+            {getTasksByKey('Todo').map((content, idx) => (
+              <TaskCard key={idx} content={content} /> 
+            ))}
           </SwimlaneItemBackground>
           <SwimlaneItemBackground>
-            <Card sx={{ mt: 1 }}>
-              <CardContent sx={{ bgcolor: 'background.default', border: '1px solid', borderColor: 'primary.main' }}>
-                <Typography variant="body2" color="text.secondary">
-                  This is the content of the card inside the accordion {story}.
-                </Typography>
-              </CardContent>
-            </Card>
+            {getTasksByKey('InProgress').map((content, idx) => (
+              <TaskCard key={idx} content={content} /> 
+            ))}
           </SwimlaneItemBackground>
-          <SwimlaneItemBackground />
+          <SwimlaneItemBackground>
+            {getTasksByKey('Done').map((content, idx) => (
+              <TaskCard key={idx} content={content} />
+            ))}
+          </SwimlaneItemBackground>
         </Stack>
       </AccordionDetails>
       <AddItemDialog

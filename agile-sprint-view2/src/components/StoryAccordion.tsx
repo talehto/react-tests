@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Accordion, AccordionSummary, AccordionDetails, Typography, Card, CardContent, Stack, IconButton, Menu, MenuItem, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {DndContext} from '@dnd-kit/core';
 import SwimlaneItemBackground from './SwimlaneItemBackground';
 import AddItemDialog from './AddItemDialog';
 import TaskCard from './TaskCard';
@@ -124,27 +125,29 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
                               borderColor: 'primary.main',
                               position: 'relative' 
                             }}>
-        <Stack
-          direction="row"
-          spacing={2}
-          flexWrap="nowrap"
-        >
-          <SwimlaneItemBackground>
-            {getTasksByKey('Todo').map((content, idx) => (
-              <TaskCard key={idx} content={content} /> 
-            ))}
-          </SwimlaneItemBackground>
-          <SwimlaneItemBackground>
-            {getTasksByKey('InProgress').map((content, idx) => (
-              <TaskCard key={idx} content={content} /> 
-            ))}
-          </SwimlaneItemBackground>
-          <SwimlaneItemBackground>
-            {getTasksByKey('Done').map((content, idx) => (
-              <TaskCard key={idx} content={content} />
-            ))}
-          </SwimlaneItemBackground>
-        </Stack>
+        <DndContext>
+          <Stack
+            direction="row"
+            spacing={2}
+            flexWrap="nowrap"
+          >
+            <SwimlaneItemBackground>
+              {getTasksByKey('Todo').map((content, idx) => (
+                <TaskCard key={idx} content={content} /> 
+              ))}
+            </SwimlaneItemBackground>
+            <SwimlaneItemBackground>
+              {getTasksByKey('InProgress').map((content, idx) => (
+                <TaskCard key={idx} content={content} /> 
+              ))}
+            </SwimlaneItemBackground>
+            <SwimlaneItemBackground>
+              {getTasksByKey('Done').map((content, idx) => (
+                <TaskCard key={idx} content={content} />
+              ))}
+            </SwimlaneItemBackground>
+          </Stack>
+        </DndContext>
       </AccordionDetails>
       <AddItemDialog
         openAddItemDialog={openAddTaskDialog}

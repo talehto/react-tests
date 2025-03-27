@@ -3,7 +3,8 @@ import { Accordion, AccordionSummary, AccordionDetails, Typography, Card, CardCo
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {DndContext} from '@dnd-kit/core';
-import SwimlaneItemBackground from './SwimlaneItemBackground';
+//import SwimlaneItemBackground from './SwimlaneItemBackground';
+import SwimlaneDroppableBackground from './SwimlaneDroppableBackground';
 import AddItemDialog from './AddItemDialog';
 import TaskCard from './TaskCard';
 
@@ -131,21 +132,21 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
             spacing={2}
             flexWrap="nowrap"
           >
-            <SwimlaneItemBackground>
+            <SwimlaneDroppableBackground id='Todo'>
               {getTasksByKey('Todo').map((content, idx) => (
                 <TaskCard key={idx} content={content} /> 
               ))}
-            </SwimlaneItemBackground>
-            <SwimlaneItemBackground>
+            </SwimlaneDroppableBackground>
+            <SwimlaneDroppableBackground id='InProgress'>
               {getTasksByKey('InProgress').map((content, idx) => (
                 <TaskCard key={idx} content={content} /> 
               ))}
-            </SwimlaneItemBackground>
-            <SwimlaneItemBackground>
+            </SwimlaneDroppableBackground>
+            <SwimlaneDroppableBackground id='Done'>
               {getTasksByKey('Done').map((content, idx) => (
                 <TaskCard key={idx} content={content} />
               ))}
-            </SwimlaneItemBackground>
+            </SwimlaneDroppableBackground>
           </Stack>
         </DndContext>
       </AccordionDetails>

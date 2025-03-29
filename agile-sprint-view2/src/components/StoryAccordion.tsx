@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Accordion, AccordionSummary, AccordionDetails, Typography, Card, CardContent, Stack, IconButton, Menu, MenuItem, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {DndContext} from '@dnd-kit/core';
-//import SwimlaneItemBackground from './SwimlaneItemBackground';
+import { DndContext, closestCenter, DragEndEvent } from '@dnd-kit/core';
+import { v4 as uuidv4 } from 'uuid';
 import SwimlaneDroppableBackground from './SwimlaneDroppableBackground';
 import AddItemDialog from './AddItemDialog';
 import TaskCard from './TaskCard';
@@ -13,7 +13,7 @@ interface StoryAccordionProps {
   index: number;
 }
 interface TaskDict {
-  [key: string]: string[];
+  [key: string]: { id: string; title: string }[];
 }
 
 const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
@@ -24,7 +24,12 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
   const [openAddTaskDialog, setOpenAddTaskDialog] = useState(false);
   const [taskTitle, setTaskTitle] = useState('');
   const [expandAccordionDetails, setExpandAccordionDetails] = useState<boolean>(false);
-  const [tasks, setTasks] = useState<TaskDict>({});
+  //const [tasks, setTasks] = useState<TaskDict>({});
+  const [tasks, setTasks] = useState<TaskDict>({
+    Todo: [{ id: uuidv4(), title: 'Task 1' }, { id: uuidv4(), title: 'Task 2' }],
+    InProgress: [{ id: uuidv4(), title: 'Task 3' }],
+    Done: [{ id: uuidv4(), title: 'Task 4' }],
+  });  
 
   const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     // This prevents the opening a AccorionSummary when clicking on the menu.
@@ -43,7 +48,7 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
   };
   
   const handleCloseTaskButtonClick = (event: React.MouseEvent<HTMLElement>) => {
-    addTask('Todo', taskTitle);
+    setTask('Todo', taskTitle);
     setOpenAddTaskDialog(false);
     handleMenuClose(event);
     setTaskTitle('');
@@ -61,19 +66,49 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
     setTaskTitle(event.target.value);
   };
 
-  const handleAccordionChange = (_: React.ChangeEvent<{}>, expanded: boolean) => {
+  const handleAccordionChange = (_: React.ChangeEvent<unknown>, expanded: boolean) => {
     setExpandAccordionDetails(expanded);
   };
 
-  const addTask = (key: string, taskTitle: string) => {
+  const setTask = (key: string, taskTitle: string) => {
+    const newTaskId = uuidv4();
     setTasks(prevTasks => ({
       ...prevTasks,
-      [key]: prevTasks[key] ? [...prevTasks[key], taskTitle] : [taskTitle]
+      [key]: prevTasks[key] ? [...prevTasks[key], { id: newTaskId, title: taskTitle }] : [{ id: newTaskId, title: taskTitle }]
     }));
   };
 
-  const getTasksByKey = (key: string): string[] => {
+  const getTasksByKey = (key: string): { id: string; title: string }[] => {
     return tasks[key] || [];
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.data.current?.key === over.id) return;
+
+    const activeKey = active.data.current?.key;
+    //const overKey = over.data.current?.key;
+    const overKey = over.id;
+
+    if (activeKey && overKey) {
+      setTasks(prevTasks => {
+        const activeTasks = [...prevTasks[activeKey]];
+        const overTasks = [...prevTasks[overKey]];
+
+        // Remove the task from the active swimlane
+        const taskIndex = activeTasks.findIndex(task => task.id === active.id);
+        const [movedTask] = activeTasks.splice(taskIndex, 1);
+
+        // Add the task to the new swimlane
+        overTasks.push(movedTask);
+
+        return {
+          ...prevTasks,
+          [activeKey]: activeTasks,
+          [overKey]: overTasks,
+        };
+      });
+    }
   };
 
   return (
@@ -126,25 +161,27 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
                               borderColor: 'primary.main',
                               position: 'relative' 
                             }}>
-        <DndContext>
+        <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
           <Stack
             direction="row"
             spacing={2}
             flexWrap="nowrap"
           >
-            <SwimlaneDroppableBackground id='Todo'>
-              {getTasksByKey('Todo').map((content, idx) => (
-                <TaskCard key={idx} content={content} /> 
+            <SwimlaneDroppableBackground id="Todo">
+              {getTasksByKey('Todo').map(task => (
+                <TaskCard key={task.id} id={task.id} content={task.title} swimlaneKey="Todo" />
               ))}
             </SwimlaneDroppableBackground>
-            <SwimlaneDroppableBackground id='InProgress'>
-              {getTasksByKey('InProgress').map((content, idx) => (
-                <TaskCard key={idx} content={content} /> 
+
+            <SwimlaneDroppableBackground id="InProgress">
+              {getTasksByKey('InProgress').map(task => (
+                <TaskCard key={task.id} id={task.id} content={task.title} swimlaneKey="InProgress" />
               ))}
             </SwimlaneDroppableBackground>
-            <SwimlaneDroppableBackground id='Done'>
-              {getTasksByKey('Done').map((content, idx) => (
-                <TaskCard key={idx} content={content} />
+
+            <SwimlaneDroppableBackground id="Done">
+              {getTasksByKey('Done').map(task => (
+                <TaskCard key={task.id} id={task.id} content={task.title} swimlaneKey="Done" />
               ))}
             </SwimlaneDroppableBackground>
           </Stack>

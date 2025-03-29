@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stack } from '@mui/material';
-import SwimlaneItemBackground from './SwimlaneItemBackground';
+import SwimlaneItemBackground from './SwimlaneBackground';
 
 const SwimlaneHeader: React.FC = () => {
   return (

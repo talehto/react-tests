@@ -2,7 +2,7 @@ import React from 'react';
 import {useDroppable} from '@dnd-kit/core';
 import {  Box } from '@mui/material';
 //import { CSS } from '@dnd-kit/utilities';
-import SwimlaneItemBackground from './SwimlaneItemBackground';
+import SwimlaneBackground from './SwimlaneBackground';
 
 interface SwimlaneDroppableBackgroundProps {
   id: string;
@@ -14,9 +14,9 @@ const SwimlaneDroppableBackground: React.FC<SwimlaneDroppableBackgroundProps> = 
 
   return (
     <Box ref={setNodeRef} sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-      <SwimlaneItemBackground>
+      <SwimlaneBackground>
         {children}
-      </SwimlaneItemBackground>
+      </SwimlaneBackground>
     </Box>
   );
 };

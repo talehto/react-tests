@@ -1,7 +1,7 @@
 import { Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const SwimlaneItemBackground = styled(Paper)(({ theme }) => ({
+const SwimlaneBackground = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.column_background.default,
   flex: 1,
   ...theme.typography.body2,
@@ -10,4 +10,4 @@ const SwimlaneItemBackground = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default SwimlaneItemBackground;
+export default SwimlaneBackground;

@@ -84,10 +84,11 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-    if (!over || active.data.current?.key === over.id) return;
+    if (!over || active.data.current?.swimlaneKey === over.id) return;
 
-    const activeKey = active.data.current?.key;
-    //const overKey = over.data.current?.key;
+    if( active.data.current?.storyId !== over.data.current?.storyId ) return;
+
+    const activeKey = active.data.current?.swimlaneKey;
     const overKey = over.id;
 
     if (activeKey && overKey) {
@@ -161,27 +162,27 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
                               borderColor: 'primary.main',
                               position: 'relative' 
                             }}>
-        <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
+        <DndContext onDragEnd={handleDragEnd}>
           <Stack
             direction="row"
             spacing={2}
             flexWrap="nowrap"
           >
-            <SwimlaneDroppableBackground id="Todo">
+            <SwimlaneDroppableBackground storyId={`${index}`} swimlaneKey="Todo" >
               {getTasksByKey('Todo').map(task => (
-                <TaskCard key={task.id} id={task.id} content={task.title} swimlaneKey="Todo" />
+                <TaskCard key={task.id} taskId={task.id} content={task.title} storyId={`${index}`} swimlaneKey="Todo" />
               ))}
             </SwimlaneDroppableBackground>
 
-            <SwimlaneDroppableBackground id="InProgress">
+            <SwimlaneDroppableBackground storyId={`${index}`} swimlaneKey="InProgress" >
               {getTasksByKey('InProgress').map(task => (
-                <TaskCard key={task.id} id={task.id} content={task.title} swimlaneKey="InProgress" />
+                <TaskCard key={task.id} taskId={task.id} content={task.title} storyId={`${index}`} swimlaneKey="InProgress" />
               ))}
             </SwimlaneDroppableBackground>
 
-            <SwimlaneDroppableBackground id="Done">
+            <SwimlaneDroppableBackground storyId={`${index}`} swimlaneKey="Done" >
               {getTasksByKey('Done').map(task => (
-                <TaskCard key={task.id} id={task.id} content={task.title} swimlaneKey="Done" />
+                <TaskCard key={task.id} taskId={task.id} content={task.title} storyId={`${index}`} swimlaneKey="Done" />
               ))}
             </SwimlaneDroppableBackground>
           </Stack>

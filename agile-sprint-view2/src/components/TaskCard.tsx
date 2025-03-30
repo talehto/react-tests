@@ -5,15 +5,16 @@ import {CSS} from '@dnd-kit/utilities';
 
 interface TaskCardProps {
   content: string;
-  id: string;
+  taskId: string;
   swimlaneKey: string;
+  storyId: string;
 }
 
-const TaskCard: React.FC<TaskCardProps> = ({ id, content, swimlaneKey }) => {
+const TaskCard: React.FC<TaskCardProps> = ({ taskId, content, swimlaneKey, storyId }) => {
 
   const {attributes, listeners, setNodeRef, transform} = useDraggable({
-    id: id,
-    data: { key: swimlaneKey },
+    id: taskId,
+    data: { swimlaneKey: swimlaneKey, storyId: storyId },
   });
 
   const style = {

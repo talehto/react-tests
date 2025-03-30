@@ -86,7 +86,7 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
     const { active, over } = event;
     if (!over || active.data.current?.swimlaneKey === over.id) return;
 
-    if( active.data.current?.storyId !== over.data.current?.storyId ) return;
+    //if( active.data.current?.storyId !== over.data.current?.storyId ) return;
 
     const activeKey = active.data.current?.swimlaneKey;
     const overKey = over.id;

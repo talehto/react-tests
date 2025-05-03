@@ -7,14 +7,13 @@ interface TaskCardProps {
   content: string;
   taskId: string;
   swimlaneKey: string;
-  storyId: string;
 }
 
-const TaskCard: React.FC<TaskCardProps> = ({ taskId, content, swimlaneKey, storyId }) => {
+const TaskCard: React.FC<TaskCardProps> = ({ taskId, content, swimlaneKey }) => {
 
   const {attributes, listeners, setNodeRef, transform} = useDraggable({
     id: taskId,
-    data: { swimlaneKey: swimlaneKey, storyId: storyId },
+    data: { swimlaneKey: swimlaneKey },
   });
 
   const style = {

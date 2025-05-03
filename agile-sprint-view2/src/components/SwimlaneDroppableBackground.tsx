@@ -5,15 +5,13 @@ import {  Box } from '@mui/material';
 import SwimlaneBackground from './SwimlaneBackground';
 
 interface SwimlaneDroppableBackgroundProps {
-  storyId: string;
   swimlaneKey: string;
   children?: React.ReactNode;
 }
 
-const SwimlaneDroppableBackground: React.FC<SwimlaneDroppableBackgroundProps> = ({ storyId, swimlaneKey, children }) => {
+const SwimlaneDroppableBackground: React.FC<SwimlaneDroppableBackgroundProps> = ({ swimlaneKey, children }) => {
   const { setNodeRef } = useDroppable({ 
     id: swimlaneKey,
-    data: { storyId: storyId }, 
   });
 
   return (

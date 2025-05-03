@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Typography, Card, CardContent, Stack, IconButton, Menu, MenuItem, Box } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Typography, Stack, IconButton, Menu, MenuItem, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { DndContext, closestCenter, DragEndEvent } from '@dnd-kit/core';
+import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { v4 as uuidv4 } from 'uuid';
 import SwimlaneDroppableBackground from './SwimlaneDroppableBackground';
 import AddItemDialog from './AddItemDialog';
@@ -24,7 +24,6 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
   const [openAddTaskDialog, setOpenAddTaskDialog] = useState(false);
   const [taskTitle, setTaskTitle] = useState('');
   const [expandAccordionDetails, setExpandAccordionDetails] = useState<boolean>(false);
-  //const [tasks, setTasks] = useState<TaskDict>({});
   const [tasks, setTasks] = useState<TaskDict>({
     Todo: [{ id: uuidv4(), title: 'Task 1' }, { id: uuidv4(), title: 'Task 2' }],
     InProgress: [{ id: uuidv4(), title: 'Task 3' }],
@@ -85,8 +84,6 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over || active.data.current?.swimlaneKey === over.id) return;
-
-    //if( active.data.current?.storyId !== over.data.current?.storyId ) return;
 
     const activeKey = active.data.current?.swimlaneKey;
     const overKey = over.id;
@@ -168,21 +165,21 @@ const StoryAccordion: React.FC<StoryAccordionProps> = ({ story, index }) => {
             spacing={2}
             flexWrap="nowrap"
           >
-            <SwimlaneDroppableBackground storyId={`${index}`} swimlaneKey="Todo" >
+            <SwimlaneDroppableBackground swimlaneKey="Todo" >
               {getTasksByKey('Todo').map(task => (
-                <TaskCard key={task.id} taskId={task.id} content={task.title} storyId={`${index}`} swimlaneKey="Todo" />
+                <TaskCard key={task.id} taskId={task.id} content={task.title} swimlaneKey="Todo" />
               ))}
             </SwimlaneDroppableBackground>
 
-            <SwimlaneDroppableBackground storyId={`${index}`} swimlaneKey="InProgress" >
+            <SwimlaneDroppableBackground swimlaneKey="InProgress" >
               {getTasksByKey('InProgress').map(task => (
-                <TaskCard key={task.id} taskId={task.id} content={task.title} storyId={`${index}`} swimlaneKey="InProgress" />
+                <TaskCard key={task.id} taskId={task.id} content={task.title} swimlaneKey="InProgress" />
               ))}
             </SwimlaneDroppableBackground>
 
-            <SwimlaneDroppableBackground storyId={`${index}`} swimlaneKey="Done" >
+            <SwimlaneDroppableBackground swimlaneKey="Done" >
               {getTasksByKey('Done').map(task => (
-                <TaskCard key={task.id} taskId={task.id} content={task.title} storyId={`${index}`} swimlaneKey="Done" />
+                <TaskCard key={task.id} taskId={task.id} content={task.title} swimlaneKey="Done" />
               ))}
             </SwimlaneDroppableBackground>
           </Stack>

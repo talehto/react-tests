@@ -11,21 +11,25 @@ interface AddItemDialogProps {
 }
 
 const AddItemDialog: React.FC<AddItemDialogProps> = ({ openAddItemDialog, itemType, onClose, onCancel, onStoryTitleChange, storyTitle }) => {
-  const handleClose = () => {
-    onCancel();
-  };
-
+  
   return (
     <Dialog
       sx={{ borderRadius: 2 }}
       open={openAddItemDialog}
-      onClose={handleClose}
+      onClose={onCancel}
       maxWidth="md"
       fullWidth
     >
       <DialogTitle sx={{ borderRadius: 2, margin: 1, bgcolor: 'secondary.main' }}>{`Add ${itemType}`}</DialogTitle>
-      <DialogContent>
+      <DialogContent sx={{ bgcolor: 'background.default' }}>
         <TextField
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '&:hover fieldset': {
+                borderColor: 'secondary.main', // Change border color on hover
+              },
+            },
+          }}
           autoFocus
           margin="dense"
           id="name"
@@ -37,11 +41,11 @@ const AddItemDialog: React.FC<AddItemDialogProps> = ({ openAddItemDialog, itemTy
           onChange={onStoryTitleChange}
         />
       </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose} sx={{ color: "text.primary" }}>
-          Close
+      <DialogActions sx={{ bgcolor: 'background.default' }}>
+        <Button onClick={onClose} sx={{ color: "text.primary", bgcolor: 'secondary.main' }}>
+          Add
         </Button>
-        <Button onClick={onCancel} sx={{ color: "text.primary" }}>
+        <Button onClick={onCancel} sx={{ color: "text.primary", bgcolor: 'secondary.main' }}>
           Cancel
         </Button>
       </DialogActions>

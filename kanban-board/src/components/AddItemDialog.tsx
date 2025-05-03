@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField, useTheme } from '@mui/material';
 
 interface AddItemDialogProps {
   openAddItemDialog: boolean;
@@ -11,7 +11,8 @@ interface AddItemDialogProps {
 }
 
 const AddItemDialog: React.FC<AddItemDialogProps> = ({ openAddItemDialog, itemType, onClose, onCancel, onStoryTitleChange, storyTitle }) => {
-  
+  const theme = useTheme();
+
   return (
     <Dialog
       sx={{ borderRadius: 2 }}
@@ -20,7 +21,8 @@ const AddItemDialog: React.FC<AddItemDialogProps> = ({ openAddItemDialog, itemTy
       maxWidth="md"
       fullWidth
     >
-      <DialogTitle sx={{ borderRadius: 2, margin: 1, bgcolor: 'secondary.main' }}>{`Add ${itemType}`}</DialogTitle>
+      <DialogTitle sx={{ boxShadow: `0 0 0 14px ${theme.palette.background.default}`, borderRadius: 2, margin: 1, bgcolor: 'secondary.main' }}>{`Add ${itemType}`}</DialogTitle>
+      {/* <DialogTitle sx={{ border: '2px solid red', borderRadius: 2, margin: 1, bgcolor: 'secondary.main' }}>{`Add ${itemType}`}</DialogTitle> */}
       <DialogContent sx={{ bgcolor: 'background.default' }}>
         <TextField
           sx={{
